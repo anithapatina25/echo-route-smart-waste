@@ -1,0 +1,22 @@
+{
+  "name": "echo-route-smart-waste",
+  "version": "1.0.0",
+  "description": "ECHO ROUTE SMART WASTE - Rural & Gram Panchayat Smart Waste Management Platform",
+  "scripts": {
+    "migrate": "node database/migrate.js",
+    "seed": "node database/seed.js",
+    "db:setup": "node database/migrate.js && node database/seed.js",
+    "build:frontend": "npm --prefix frontend run build",
+    "start": "node backend/server.js",
+    "dev:backend": "node --watch backend/server.js",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "test": "node test-foundation.js"
+  },
+  "keywords": [
+    "waste-management",
+    "gram-panchayat",
+    "rural-tech",
+    "smart-routes"
+  ],
+  "license": "MIT"
+}
