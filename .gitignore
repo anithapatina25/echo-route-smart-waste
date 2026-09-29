@@ -8,3 +8,6 @@ coverage/
 __pycache__/
 *.pyc
 .vscode/
+
+*.db-shm
+*.db-wal
