@@ -1,4 +1,4 @@
-﻿import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { authApi } from '../api/auth.api';
 
 const AuthContext = createContext(null);
@@ -50,6 +50,18 @@ export function AuthProvider({ children }) {
     throw new Error(response.message || 'Login failed');
   }, []);
 
+  const register = useCallback(async (registerData) => {
+    const response = await authApi.registerCitizen(registerData);
+    if (response.success && response.data) {
+      const { token: receivedToken, user: receivedUser } = response.data;
+      localStorage.setItem('echo_route_token', receivedToken);
+      setToken(receivedToken);
+      setUser(receivedUser);
+      return receivedUser;
+    }
+    throw new Error(response.message || 'Registration failed');
+  }, []);
+
   const logout = useCallback(async () => {
     try {
       if (token) {
@@ -68,6 +80,7 @@ export function AuthProvider({ children }) {
     isAuthenticated: !!user,
     isLoading,
     login,
+    register,
     logout
   };
 

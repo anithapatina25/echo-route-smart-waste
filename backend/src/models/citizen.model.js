@@ -17,6 +17,15 @@ const CitizenModel = {
     );
   },
 
+  createProfile: ({ userId, wardNumber = 'Ward 4', villageName = 'Gram Panchayat', houseNumber = '', landmark = '', gpsLat = 28.5355, gpsLng = 77.3910 }) => {
+    db.run(
+      `INSERT INTO citizen_profiles (user_id, ward_number, village_name, house_number, landmark, gps_lat, gps_lng)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [userId, wardNumber, villageName, houseNumber, landmark, gpsLat, gpsLng]
+    );
+    return db.get('SELECT * FROM citizen_profiles WHERE user_id = ?', [userId]);
+  },
+
   getDashboardStats: (citizenProfileId) => {
     const totalRequests = db.get(
       'SELECT COUNT(*) as count FROM pickup_requests WHERE citizen_id = ?',

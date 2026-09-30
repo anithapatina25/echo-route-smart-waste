@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ECHO ROUTE SMART WASTE
  * Auth Controller
  */
@@ -12,6 +12,19 @@ const AuthController = {
       res.status(200).json({
         success: true,
         message: 'Login successful',
+        data: result
+      });
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  register: async (req, res, next) => {
+    try {
+      const result = await AuthService.registerCitizen(req.body);
+      res.status(201).json({
+        success: true,
+        message: 'Registration successful',
         data: result
       });
     } catch (err) {

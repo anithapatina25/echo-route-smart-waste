@@ -12,6 +12,13 @@ export const authApi = {
     });
   },
 
+  registerCitizen: async (userData) => {
+    return apiClient('/auth/register', {
+      method: 'POST',
+      body: userData
+    });
+  },
+
   getCurrentUser: async () => {
     return apiClient('/auth/me');
   },

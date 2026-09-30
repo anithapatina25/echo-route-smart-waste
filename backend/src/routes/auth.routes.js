@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ECHO ROUTE SMART WASTE
  * Auth Routes
  */
@@ -8,6 +8,7 @@ const AuthController = require('../controllers/auth.controller');
 const { requireAuth } = require('../middleware/auth.middleware');
 
 router.post('/login', AuthController.login);
+router.post('/register', AuthController.register);
 router.get('/me', requireAuth, AuthController.me);
 router.post('/logout', AuthController.logout);
 
